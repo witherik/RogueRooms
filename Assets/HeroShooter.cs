@@ -64,7 +64,7 @@ public class HeroShooter : MonoBehaviour
         if (target.gameObject.TryGetComponent<Rigidbody2D>(out Rigidbody2D targetRigidbody))
         {
             var dist = (Vector2)transform.position - (Vector2)target.position;
-            var time = dist.magnitude / currentWeapon.spe
+            var time = dist.magnitude / currentWeapon.projectileSpeed;
             return Vector2.zero;
         }
         else
