@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour {
         }
 
         hero.GetComponent<Rigidbody2D>().position = room.entry.position;
-        cam.transform.position = room.cameraPosition.position;
+        var newCamPos = room.cameraPosition.position;
+        cam.transform.position = new Vector3(newCamPos.x, newCamPos.y, cam.transform.position.z);
     }
 }
