@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private Room[] rooms;
     [SerializeField] private EnemySpec[] enemySpecs;
     [SerializeField] private Hero hero;
+    [SerializeField] private Camera cam;
 
     private void Start() {
         InitRoom(2, 5);
@@ -23,5 +24,6 @@ public class GameManager : MonoBehaviour {
         }
 
         hero.GetComponent<Rigidbody2D>().position = room.entry.position;
+        cam.transform.position = room.cameraPosition.position;
     }
 }
