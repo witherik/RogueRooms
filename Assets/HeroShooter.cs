@@ -21,17 +21,27 @@ public class HeroShooter : MonoBehaviour
 
     void Start()
     {
-        CalculateWeaponProperites();
+        ApplyWeaponModifiers();
     }
 
-    private void CalculateWeaponProperites()
+    void Update()
+    {
+        var enemy = DecideOnTarget();
+        if (enemy != null)
+        {
+            var target = PredictTarget(enemy.transform);
+            weaponAnchor.right = target - (Vector2)transform.position;
+        }
+    }
+
+    private void ApplyWeaponModifiers()
     {
         Destroy(currentWeapon);
         currentWeapon = Instantiate(baseWeaponObject);
         foreach (var modifier in weaponModifiers)
         {
             currentWeapon.damage += modifier.damage;
-            currentWeapon.rateOfFire += modifier.rateOfFire;
+            currentWeapon.shotsPerSecond += modifier.shotsPerSecond;
             currentWeapon.bounces += modifier.bounces;
             currentWeapon.projectileCount += modifier.projectileCount;
             currentWeapon.seekingSregth = Mathf.Clamp01(currentWeapon.seekingSregth + modifier.seekingSregth);
@@ -65,7 +75,10 @@ public class HeroShooter : MonoBehaviour
         {
             var dist = (Vector2)transform.position - (Vector2)target.position;
             var time = dist.magnitude / currentWeapon.projectileSpeed;
-            return Vector2.zero;
+            var targetDir = Vector2.ClampMagnitude(targetRigidbody.velocity, 1);
+            var targetSpeed = targetRigidbody.velocity;
+            var newPos = targetDir * (targetSpeed * time);
+            return newPos;
         }
         else
         {

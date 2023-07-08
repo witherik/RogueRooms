@@ -6,7 +6,7 @@ public class Weapon : ScriptableObject
 {
     [Header("Weapon properties")]
     public float damage;
-    public float rateOfFire;
+    public float shotsPerSecond;
     [Min(0)] public float projectileSpeed;
     [Min(1)] public int projectileCount = 1;
     [Min(0)] public int bounces = 0;
