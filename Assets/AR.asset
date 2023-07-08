@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa46bc316a0246146922450f50c900d1, type: 3}
   m_Name: AR
   m_EditorClassIdentifier: 
-  damage: 0
-  rateOfFire: 0
+  damage: 1
+  shotsPerSecond: 0.3
+  projectileSpeed: 10
+  projectileCount: 1
   bounces: 0
+  spread: 0
   seekingSregth: 0
-  weaponSprite: {fileID: 0}
-  projectile: {fileID: 0}
+  weaponSprite: {fileID: 21300000, guid: 3d59e66829f53274d8b8c4e94cfcbd0b, type: 3}
+  projectilePrefab: {fileID: 513918777282832008, guid: ced5800b7ecace442981419ef7a0473a, type: 3}

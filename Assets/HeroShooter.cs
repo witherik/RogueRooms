@@ -5,6 +5,7 @@ using UnityEngine;
 public class HeroShooter : MonoBehaviour
 {
     [SerializeField] private Transform weaponAnchor;
+    [SerializeField] private float bulletSpawnDistance = 0.5f;
     [SerializeField] private LayerMask lineOfSightBlocking;
     [Header("Stats")]
     [SerializeField][Range(0.0f, 1.0f)] private float accuracy = 1.0f;
@@ -12,12 +13,9 @@ public class HeroShooter : MonoBehaviour
     [SerializeField] private WeaponObject baseWeaponObject;
     private WeaponObject currentWeapon;
     [SerializeField] private List<WeaponModifier> weaponModifiers = new List<WeaponModifier>();
-
-
-
     private List<Enemy> enemies = new List<Enemy>();
 
-    private float lastShotFired;
+    private float timeSinceLastShot = 0;
 
     void Start()
     {
@@ -31,7 +29,22 @@ public class HeroShooter : MonoBehaviour
         {
             var target = PredictTarget(enemy.transform);
             weaponAnchor.right = target - (Vector2)transform.position;
+            if (timeSinceLastShot >= currentWeapon.shotsPerSecond)
+            {
+                timeSinceLastShot = 0;
+                Shoot();
+            }
         }
+        timeSinceLastShot = Mathf.Min(timeSinceLastShot + Time.deltaTime, currentWeapon.shotsPerSecond);
+    }
+
+    private void Shoot()
+    {
+        var spawnPos = transform.position + weaponAnchor.right * bulletSpawnDistance;
+        var projectile = Instantiate(currentWeapon.projectilePrefab, spawnPos, weaponAnchor.rotation).GetComponent<Projectile>();
+        projectile.damage = currentWeapon.damage;
+        projectile.speed = currentWeapon.projectileSpeed;
+        projectile.dealDamageTo = new List<string>() { "Enemy" };
     }
 
     private void ApplyWeaponModifiers()

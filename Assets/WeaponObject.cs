@@ -7,5 +7,5 @@ public class WeaponObject : Weapon
 {
     [Header("Object properties")]
     public Sprite weaponSprite;
-    public GameObject projectile;
+    public GameObject projectilePrefab;
 }
