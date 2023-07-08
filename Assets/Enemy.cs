@@ -12,4 +12,8 @@ public class Enemy : MonoBehaviour
         hero.OnEnemySpawn(this);
     }
 
+    public void Init(EnemyLevel attributes) {
+        // TODO: set attributes for enemy
+    }
+
 }

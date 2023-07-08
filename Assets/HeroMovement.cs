@@ -44,7 +44,6 @@ public class HeroMovement : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         InitializeDirections();
-        Debug.Log(directions);
     }
 
     private void InitializeDirections()
@@ -152,7 +151,6 @@ public class HeroMovement : MonoBehaviour
                 iSeeEnemies += 2;
             }
         }
-        Debug.Log(iSeeEnemies.ToString());
         var closestBullet = 0.0f;
 
         foreach (var projectile in projectiles)

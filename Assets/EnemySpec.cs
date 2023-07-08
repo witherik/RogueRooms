@@ -3,7 +3,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "EnemySpec", menuName = "Rogue Rooms/EnemySpec", order = 0)]
 public class EnemySpec : ScriptableObject {
-        public GameObject prefab;
+        public Enemy prefab;
         public EnemyLevel[] levels;
 }
 
