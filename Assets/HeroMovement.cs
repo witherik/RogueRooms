@@ -6,24 +6,25 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class HeroMovement : MonoBehaviour {
+public class HeroMovement : MonoBehaviour
+{
     [Header("Computing")]
     [SerializeField] private float calculationTime = 1.0f;
     [SerializeField] private int dirCount = 8;
-    [SerializeField] private float accuracy = 1.0f; 
+    [SerializeField] private float accuracy = 1.0f;
     [Header("Wall Raycast")]
     [SerializeField] private int rayToWallDistance = 100;
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private float wallDistanceWeight = 1.0f;
-    
-    [Header("Position Raycast")] 
+
+    [Header("Position Raycast")]
     [SerializeField] private LayerMask movementBlockLayerMask;
 
     [SerializeField] private float totalPosWeight = 1.0f;
     [SerializeField] private float enemyCountWeightMult = 10f;
     [SerializeField] private float enemyAvoidWeight = 1.0f;
     [SerializeField] private float projectileAvoidWeight = 1.0f;
-    
+
     [SerializeField] private float impossibleMoveWeight = -1;
     [Header("Movement")]
     [SerializeField] private float speed = 5.0f;
@@ -37,25 +38,30 @@ public class HeroMovement : MonoBehaviour {
     Dictionary<Vector2, float> calcPosWeights = new Dictionary<Vector2, float>();
     private float timePassed = 0;
     private Vector2 moveDir;
-    
-    
-    private void Start() {
+
+
+    private void Start()
+    {
         rigidBody = GetComponent<Rigidbody2D>();
         InitializeDirections();
         Debug.Log(directions);
     }
 
-    private void InitializeDirections() {
-        for (var i = 0.0f; i < 359; i += 360.0f / dirCount) {
+    private void InitializeDirections()
+    {
+        for (var i = 0.0f; i < 359; i += 360.0f / dirCount)
+        {
             var dir = Quaternion.AngleAxis(i, Vector3.forward) * Vector2.up;
             directions.Add(dir);
         }
         directions.Add(Vector2.zero);
     }
-    
-    private void Update() {
+
+    private void Update()
+    {
         timePassed += Time.deltaTime;
-        if (timePassed > calculationTime) {
+        if (timePassed > calculationTime)
+        {
             timePassed = 0;
             moveDir = CalculateMove();
         }
@@ -63,80 +69,97 @@ public class HeroMovement : MonoBehaviour {
         rigidBody.velocity = moveDir * speed;
     }
 
-    private Vector2 CalculateMove() {
+    private Vector2 CalculateMove()
+    {
 
         Dictionary<Vector2, float> wallWeights = GetWallDistanceWeights();
         Dictionary<Vector2, float> posWeights = EvaluatePositions();
 
         var bestDir = Vector2.zero;
         var bestWeight = float.MinValue;
-        foreach (var direction in directions) {
-            var finalDirWeight = wallWeights[direction] *wallDistanceWeight + posWeights[direction] * totalPosWeight;
-            RayDrawHelper(finalDirWeight,direction);
-            if (Random.Range(0.0f, 1.0f) <= accuracy) {
-                if (finalDirWeight > bestWeight) {
+        foreach (var direction in directions)
+        {
+            var finalDirWeight = wallWeights[direction] * wallDistanceWeight + posWeights[direction] * totalPosWeight;
+            RayDrawHelper(finalDirWeight, direction);
+            if (Random.Range(0.0f, 1.0f) <= accuracy)
+            {
+                if (finalDirWeight > bestWeight)
+                {
                     bestWeight = finalDirWeight;
                     bestDir = direction;
                 }
             }
         }
-        Debug.DrawRay(transform.position,bestDir*Math.Abs(bestWeight),Color.black,calculationTime);
+        Debug.DrawRay(transform.position, bestDir * Math.Abs(bestWeight), Color.black, calculationTime);
         return bestDir;
     }
-    private Dictionary<Vector2,float> GetWallDistanceWeights() {
-        foreach (var direction in directions) {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction,rayToWallDistance,wallLayer);
-            if (hit.collider != null) {
-                float distance = Vector2.Distance(hit.point,transform.position);
+    private Dictionary<Vector2, float> GetWallDistanceWeights()
+    {
+        foreach (var direction in directions)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, rayToWallDistance, wallLayer);
+            if (hit.collider != null)
+            {
+                float distance = Vector2.Distance(hit.point, transform.position);
                 calcWallWeights[direction] = distance;
                 // Debug.DrawRay(transform.position,direction*distance,Color.green,calculationTime);
             }
-            else {
+            else
+            {
                 calcWallWeights[direction] = 0;
             }
         }
         return calcWallWeights;
     }
-    private Dictionary<Vector2,float> EvaluatePositions() {
-        var i = 0;
-        foreach (var direction in directions) {
+    private Dictionary<Vector2, float> EvaluatePositions()
+    {
+        foreach (var direction in directions)
+        {
             var newPos = (Vector2)transform.position + direction * (speed * calculationTime);
-            calcPosWeights[direction] = EvaluatePosition(newPos,direction);
+            calcPosWeights[direction] = EvaluatePosition(newPos, direction);
         }
         return calcPosWeights;
     }
 
-    private void RayDrawHelper(float weight, Vector2 direction) {
-        if (weight > 0) {
-            Debug.DrawRay(transform.position,direction*Math.Abs(weight),Color.green,calculationTime);
+    private void RayDrawHelper(float weight, Vector2 direction)
+    {
+        if (weight > 0)
+        {
+            Debug.DrawRay(transform.position, direction * Math.Abs(weight), Color.green, calculationTime);
         }
-        else {
-            Debug.DrawRay(transform.position,direction*Math.Abs(weight),Color.red,calculationTime);
+        else
+        {
+            Debug.DrawRay(transform.position, direction * Math.Abs(weight), Color.red, calculationTime);
         }
     }
-    private float EvaluatePosition(Vector2 position,Vector2 direction) {
+    private float EvaluatePosition(Vector2 position, Vector2 direction)
+    {
         var rayDistance = (speed * calculationTime);
-        if (Physics2D.Raycast(transform.position, direction,rayDistance,movementBlockLayerMask)) {
+        if (Physics2D.Raycast(transform.position, direction, rayDistance, movementBlockLayerMask))
+        {
             return impossibleMoveWeight;
         }
         var iSeeEnemies = -1;
         var closestDist = float.MaxValue;
         var posWeight = 0.0f;
-        
-        foreach (var enemy in enemies) {
-            var pathToEnemy =  position - (Vector2)enemy.transform.position;
+
+        foreach (var enemy in enemies)
+        {
+            var pathToEnemy = position - (Vector2)enemy.transform.position;
             closestDist = Math.Min(closestDist, pathToEnemy.magnitude);
-            if (!Physics2D.Raycast(transform.position, pathToEnemy, pathToEnemy.magnitude, wallLayer)) {
+            if (!Physics2D.Raycast(transform.position, pathToEnemy, pathToEnemy.magnitude, wallLayer))
+            {
                 iSeeEnemies += 2;
             }
         }
         Debug.Log(iSeeEnemies.ToString());
         var closestBullet = 0.0f;
-        
-        foreach (var projectile in projectiles) {
-            closestBullet= Math.Min((position - (Vector2)projectile.transform.position).magnitude,closestBullet);
+
+        foreach (var projectile in projectiles)
+        {
+            closestBullet = Math.Min((position - (Vector2)projectile.transform.position).magnitude, closestBullet);
         }
-        posWeight += iSeeEnemies* enemyCountWeightMult;
+        posWeight += iSeeEnemies * enemyCountWeightMult;
         if (enemies.Count > 0)
         {
             posWeight += closestDist * enemyAvoidWeight;
@@ -145,15 +168,21 @@ public class HeroMovement : MonoBehaviour {
         posWeight += closestBullet * projectileAvoidWeight;
         return posWeight;
     }
-    
-    public void DeclareBullet(GameObject projectile) {
-        projectiles.Add(projectile);
+
+
+    public void OnProjectileSpawn(Projectile projectile)
+    {
+    }
+    public void OnProjectileDeath(Projectile projectile)
+    {
     }
 
-    public void OnEnemySpawn(Enemy enemy) {
+    public void OnEnemySpawn(Enemy enemy)
+    {
         enemies.Add(enemy);
     }
-    public void OnEnemyDeath(Enemy enemy) {
+    public void OnEnemyDeath(Enemy enemy)
+    {
         enemies.Remove(enemy);
     }
 }
