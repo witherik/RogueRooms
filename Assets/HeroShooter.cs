@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class HeroShooter : MonoBehaviour
 {
+    [SerializeField] private Transform weaponAnchor;
+
     // Start is called before the first frame update
     void Start()
     {
 
     }
 
+    private void DecideOnTarget()
+    {
+
+    }
     // Update is called once per frame
     void Update()
     {
