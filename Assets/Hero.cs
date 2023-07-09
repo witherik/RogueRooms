@@ -6,27 +6,9 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
-    [SerializeField] private HeroMovement heroMovementScript;
-    [SerializeField] private HeroShooter heroShooterScript;
 
-    public void OnProjectileSpawn(Projectile projectile)
+    public void Death()
     {
-        heroMovementScript.OnProjectileSpawn(projectile);
-    }
-    public void OnProjectileDeath(Projectile projectile)
-    {
-        heroMovementScript.OnProjectileDeath(projectile);
-    }
-
-    public void OnEnemySpawn(Enemy enemy)
-    {
-        heroMovementScript.OnEnemySpawn(enemy);
-        heroShooterScript.OnEnemySpawn(enemy);
-    }
-
-    public void OnEnemyDeath(Enemy enemy)
-    {
-        heroMovementScript.OnEnemyDeath(enemy);
-        heroMovementScript.OnEnemyDeath(enemy);
+        Destroy(gameObject);
     }
 }

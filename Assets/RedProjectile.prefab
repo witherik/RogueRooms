@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9000462233512521531}
   - component: {fileID: 1722514338974668155}
   - component: {fileID: 6887351952963946275}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RedProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +200,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 513918777282832008}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 76819db3f97e2f746b3f72b6bf612010, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -225,7 +225,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.15
+  m_Radius: 0.05
 --- !u!50 &1722514338974668155
 Rigidbody2D:
   serializedVersion: 4
@@ -238,7 +238,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -249,9 +249,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &6887351952963946275
 MonoBehaviour:
@@ -267,6 +267,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitWallParticles: {fileID: 3357719420029966965, guid: 6ae8504e63824f744ab1a4f890448ea7, type: 3}
   hitTargetParticles: {fileID: 6108838513715502466, guid: debfc5d0ab25c0f43a9d0c22059c1e6d, type: 3}
+  damage: 0
+  bounceCount: 0
+  speed: 0
+  target: {fileID: 0}
+  seekingSrength: 0
+  dealDamageTo: []
 --- !u!1 &8914384585675005995
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,7 +283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9143425445254516644}
   - component: {fileID: 575937806161003831}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

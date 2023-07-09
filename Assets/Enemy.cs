@@ -5,14 +5,23 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private Hero hero;
+    private GameManager gameManager;
 
     void Start()
     {
-        hero = GameObject.FindWithTag("Player").GetComponent<Hero>();
-        hero.OnEnemySpawn(this);
+        hero = FindAnyObjectByType<Hero>();
+        gameManager = FindAnyObjectByType<GameManager>();
+        gameManager.OnEnemySpawn(this);
     }
 
-    public void Init(EnemyLevel attributes) {
+    public void Death()
+    {
+        gameManager.OnEnemyDeath(this);
+        Destroy(gameObject);
+    }
+
+    public void Init(EnemyLevel attributes)
+    {
         // TODO: set attributes for enemy
     }
 

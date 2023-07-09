@@ -28,10 +28,13 @@ public class HeroMovement : MonoBehaviour
     [SerializeField] private float impossibleMoveWeight = -1;
     [Header("Movement")]
     [SerializeField] private float speed = 5.0f;
+
+    private GameManager gameManager;
+
     private Rigidbody2D rigidBody;
 
     private List<Enemy> enemies = new List<Enemy>();
-    private List<GameObject> projectiles = new List<GameObject>();
+    private List<Projectile> projectiles = new List<Projectile>();
 
     private List<Vector2> directions = new List<Vector2>();
     Dictionary<Vector2, float> calcWallWeights = new Dictionary<Vector2, float>();
@@ -42,8 +45,11 @@ public class HeroMovement : MonoBehaviour
 
     private void Start()
     {
+        gameManager = FindAnyObjectByType<GameManager>();
         rigidBody = GetComponent<Rigidbody2D>();
         InitializeDirections();
+        enemies = gameManager.GetEnemyList();
+        projectiles = gameManager.GetProjectileList();
     }
 
     private void InitializeDirections()
@@ -165,22 +171,5 @@ public class HeroMovement : MonoBehaviour
 
         posWeight += closestBullet * projectileAvoidWeight;
         return posWeight;
-    }
-
-
-    public void OnProjectileSpawn(Projectile projectile)
-    {
-    }
-    public void OnProjectileDeath(Projectile projectile)
-    {
-    }
-
-    public void OnEnemySpawn(Enemy enemy)
-    {
-        enemies.Add(enemy);
-    }
-    public void OnEnemyDeath(Enemy enemy)
-    {
-        enemies.Remove(enemy);
     }
 }
