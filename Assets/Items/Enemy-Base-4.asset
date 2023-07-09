@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75915fe314022e6498de25cea37d267b, type: 3}
   m_Name: Enemy-Base-4
   m_EditorClassIdentifier: 
-  maxHpAdd: 40
+  maxHpAdd: 50
   movementAccuracyAdd: 0
   shootingAccuracyAdd: 0
-  movementSpeedAdd: 0
+  movementSpeedAdd: 1
   maxHpMult: 1
   movementSpeedMult: 1
   dodgeSkilAdd: 0

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ec6959a8a81460891e1534b0b86fea4, type: 3}
+  m_Name: Cyclopse
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 6242285719177692093, guid: 9d34be760fafe5344b8a1a5e53b0d3bf, type: 3}
+  levels:
+  - fromPower: 0
+    entityModifier: {fileID: 0}
+    weaponModifier: {fileID: 0}
+  - fromPower: 50
+    entityModifier: {fileID: 11400000, guid: e65897125483af94dba8471a0e1535f5, type: 2}
+    weaponModifier: {fileID: 11400000, guid: 63785827a7f6498469990a73e1b0b779, type: 2}
+  - fromPower: 70
+    entityModifier: {fileID: 11400000, guid: 4fc51e5cbd8f5994996a9e0484daefc3, type: 2}
+    weaponModifier: {fileID: 11400000, guid: c9e7ad5fed32c254a91c5ff76afc198d, type: 2}

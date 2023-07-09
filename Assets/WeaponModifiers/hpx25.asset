@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75915fe314022e6498de25cea37d267b, type: 3}
-  m_Name: Enemy-Base-3
+  m_Name: hpx25
   m_EditorClassIdentifier: 
-  maxHpAdd: 35
+  maxHpAdd: 25
   movementAccuracyAdd: 0
   shootingAccuracyAdd: 0
-  movementSpeedAdd: 0.2
+  movementSpeedAdd: 0
   maxHpMult: 1
   movementSpeedMult: 1
   dodgeSkilAdd: 0

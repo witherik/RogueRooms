@@ -17,7 +17,7 @@ MonoBehaviour:
   projectileSpeed: 6
   projectileCount: 1
   bounces: 0
-  spread: 30
+  spread: 60
   seekingSregnth: 0
   weaponSprite: {fileID: 21300000, guid: a935c18743b760c448b29488797a4ef4, type: 3}
   projectilePrefab: {fileID: 513918777282832008, guid: ced5800b7ecace442981419ef7a0473a, type: 3}

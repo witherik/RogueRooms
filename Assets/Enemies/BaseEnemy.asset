@@ -15,11 +15,14 @@ MonoBehaviour:
   prefab: {fileID: 4427650959495695171, guid: db538a18ba6953840bfbe1ae6931d044, type: 3}
   levels:
   - fromPower: 0
-    entityModifier: {fileID: 0}
-    weaponModifier: {fileID: 0}
-  - fromPower: 5
-    entityModifier: {fileID: 0}
-    weaponModifier: {fileID: 0}
-  - fromPower: 10
-    entityModifier: {fileID: 0}
-    weaponModifier: {fileID: 0}
+    entityModifier: {fileID: 11400000, guid: a839326d861de7a40aa5684ee8bb8e45, type: 2}
+    weaponModifier: {fileID: 11400000, guid: 5d4920fef6d236e4b98b343174b5f5dc, type: 2}
+  - fromPower: 25
+    entityModifier: {fileID: 11400000, guid: 6ad703f839e81fe49b4903eccde77cc1, type: 2}
+    weaponModifier: {fileID: 11400000, guid: 5be157630a584814db293641ab0ebda1, type: 2}
+  - fromPower: 50
+    entityModifier: {fileID: 11400000, guid: e65897125483af94dba8471a0e1535f5, type: 2}
+    weaponModifier: {fileID: 11400000, guid: d3532082d0517d149abe7600cb0d9834, type: 2}
+  - fromPower: 75
+    entityModifier: {fileID: 11400000, guid: 4fc51e5cbd8f5994996a9e0484daefc3, type: 2}
+    weaponModifier: {fileID: 11400000, guid: b97e15ecb372d8f49874c09479b1a600, type: 2}

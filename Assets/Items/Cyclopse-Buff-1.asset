@@ -9,14 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75915fe314022e6498de25cea37d267b, type: 3}
-  m_Name: Enemy-Base-3
+  m_Script: {fileID: 11500000, guid: 59cdef8116749b5428e27f88e786a952, type: 3}
+  m_Name: Cyclopse-Buff-1
   m_EditorClassIdentifier: 
-  maxHpAdd: 35
-  movementAccuracyAdd: 0
-  shootingAccuracyAdd: 0
-  movementSpeedAdd: 0.2
-  maxHpMult: 1
-  movementSpeedMult: 1
-  dodgeSkilAdd: 0
-  dodgeSkilMult: 1
+  damage: 4
+  shotsPerSecond: 1
+  projectileSpeed: 0
+  projectileCount: 0
+  bounces: 0
+  spread: 0
+  seekingSregnth: 1
+  damageMultiplier: 1
+  spreadMultiplier: 1
