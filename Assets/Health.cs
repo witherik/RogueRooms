@@ -4,10 +4,22 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private float maxHp = 100.0f;
+    private float maxHp = 0.0f;
     private float hp;
     private Hero hero = null;
     private Enemy enemy = null;
+
+    public void SetMaxHP(float maxHp)
+    {
+        this.maxHp = maxHp;
+        this.hp = maxHp;
+    }
+    public void UpdateMaxHp(float maxHp)
+    {
+        var ratio = maxHp / this.maxHp;
+        this.maxHp = maxHp;
+        this.hp *= ratio;
+    }
     private void Start()
     {
         hp = maxHp;

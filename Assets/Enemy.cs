@@ -2,27 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+
+
+public class Enemy : Entity
 {
+
+
     private Hero hero;
     private GameManager gameManager;
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         hero = FindAnyObjectByType<Hero>();
         gameManager = FindAnyObjectByType<GameManager>();
         gameManager.OnEnemySpawn(this);
     }
 
-    public void Death()
+    public override void Death()
     {
         gameManager.OnEnemyDeath(this);
-        Destroy(gameObject);
+        base.Death();
     }
-
-    public void Init(EnemyLevel attributes)
-    {
-        // TODO: set attributes for enemy
-    }
-
 }

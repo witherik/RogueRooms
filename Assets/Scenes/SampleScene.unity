@@ -4248,15 +4248,15 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.0076481835
     y: 0
-    width: 1
+    width: 0.9840663
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 8.4375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -4303,7 +4303,7 @@ MonoBehaviour:
   m_AssetsPPU: 16
   m_RefResolutionX: 480
   m_RefResolutionY: 270
-  m_CropFrame: 0
+  m_CropFrame: 4
   m_GridSnapping: 0
   m_FilterMode: 0
   m_UpscaleRT: 0
@@ -5021,7 +5021,7 @@ MonoBehaviour:
   totalPosWeight: 1.77
   enemyCountWeightMult: 10
   enemyAvoidWeight: 1
-  projectileAvoidWeight: 1
+  projectileAvoidWeight: 10
   impossibleMoveWeight: -1000
   speed: 5
 --- !u!114 &707442023
@@ -5036,6 +5036,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f76f295d0823241a60712dc7cb6e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHp: 100
+  movementAccuracy: 0
+  shootingAccuracy: 0
+  movementSpeed: 0
+  weaponObject: {fileID: 11400000, guid: 4913c4d5ba99c414ba9ca86a9ebf5b0b, type: 2}
+  weaponModifiers: []
+  statModifiers: []
 --- !u!114 &707442024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5073,7 +5080,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99f62e51f11bb86448d7d8c37777edf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 150
 --- !u!1 &753910499
 GameObject:
   m_ObjectHideFlags: 0

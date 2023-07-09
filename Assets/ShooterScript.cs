@@ -24,6 +24,9 @@ public class ShooterScript : MonoBehaviour
     private float timeSinceLastShot = 0;
     private float offAngle = 0;
     private Transform heroTransform;
+
+
+
     void Start()
     {
         gameManager = FindAnyObjectByType<GameManager>();
@@ -84,8 +87,8 @@ public class ShooterScript : MonoBehaviour
             projectile.target = target;
             projectile.seekingSrength = currentWeapon.seekingSregnth;
             projectile.gameObject.layer = LayerMask.NameToLayer(bulletLayerName);
+            if (!isPlayer) { gameManager.OnProjectileSpawn(projectile); }
         }
-
 
     }
     private void PointToTaret(Vector2 target)
@@ -93,7 +96,7 @@ public class ShooterScript : MonoBehaviour
         weaponAnchor.right = target - (Vector2)transform.position;
         weaponAnchor.Rotate(new Vector3(0, 0, offAngle));
     }
-    private void ApplyWeaponModifiers()
+    public void ApplyWeaponModifiers()
     {
         Destroy(currentWeapon);
         currentWeapon = Instantiate(baseWeaponObject);
@@ -174,6 +177,12 @@ public class ShooterScript : MonoBehaviour
     public void SetWeapon(WeaponObject weaponObject)
     {
         this.baseWeaponObject = weaponObject;
+        ApplyWeaponModifiers();
+    }
+    public void SetModifiers(List<WeaponModifier> weaponModifiers)
+    {
+        this.weaponModifiers = weaponModifiers;
+        ApplyWeaponModifiers();
     }
 
 }

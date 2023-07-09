@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
             var spawnPoint = room.enemySpawnPoints[i % room.enemySpawnPoints.Length];
             var enemy = Instantiate(enemySpec.prefab, spawnPoint.position, Quaternion.identity);
             var enemyLevel = enemySpec.levels.Last(level => level.fromPower <= powerLevel);
-            enemy.Init(enemyLevel);
+            // enemy.Init(enemyLevel);
         }
 
         hero.GetComponent<Rigidbody2D>().position = room.entry.position;

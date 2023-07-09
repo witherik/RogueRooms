@@ -14,7 +14,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private int dirCount = 16;
     [SerializeField] private float calculationTime = 0.25f;
     [SerializeField] private LayerMask wallLayer;
-
+    [SerializeField] private bool needsLOSToChase = true;
     [Header("Weights")]
     [SerializeField] private float wallDistWeight = -1.0f;
     [SerializeField] private float enemyDistWeight = -1.0f;
@@ -160,7 +160,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (heroTransform)
         {
-            if (HelperFunctions.CheckLineOfSight(transform.position, heroTransform.position, wallLayer))
+            if (!needsLOSToChase || HelperFunctions.CheckLineOfSight(transform.position, heroTransform.position, wallLayer))
             {
                 var direction = (heroTransform.position - transform.position);
                 var normalWeight = Mathf.Clamp(heroDistanceEval.Evaluate(direction.magnitude), -1.0f, 1.0f);

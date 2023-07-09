@@ -3,12 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class Hero : MonoBehaviour
+[RequireComponent(typeof(Health))]
+public class Hero : Entity
 {
 
-    public void Death()
-    {
-        Destroy(gameObject);
-    }
 }
