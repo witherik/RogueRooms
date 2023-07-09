@@ -17,6 +17,7 @@ public class ShooterScript : MonoBehaviour
     [SerializeField][Range(0.0f, 1.0f)] public float accuracy = 1.0f;
     [SerializeField] private bool useMovementPredictor = true;
     [Header("Weapon")]
+    [SerializeField] private SpriteRenderer weaponSprite;
     [SerializeField] private WeaponObject baseWeaponObject;
     private WeaponObject currentWeapon;
     [SerializeField] private List<WeaponModifier> weaponModifiers = new List<WeaponModifier>();
@@ -177,6 +178,7 @@ public class ShooterScript : MonoBehaviour
     public void SetWeapon(WeaponObject weaponObject)
     {
         this.baseWeaponObject = weaponObject;
+        if (weaponSprite) { weaponSprite.sprite = baseWeaponObject.weaponSprite; }
         ApplyWeaponModifiers();
     }
     public void SetModifiers(List<WeaponModifier> weaponModifiers)

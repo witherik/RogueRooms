@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class Healthbar : MonoBehaviour
@@ -11,7 +10,6 @@ public class Healthbar : MonoBehaviour
 
     public void DisplayHealth(float maxHp, float hp)
     {
-        Debug.Log("DISPLAYING");
         var width = maxHp / healthPerUnit;
         background.transform.localPosition = new Vector3(-width / 2, 0, 0);
         var fillwidth = hp / healthPerUnit;
