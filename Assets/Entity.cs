@@ -71,12 +71,12 @@ public class Entity : MonoBehaviour
 
         foreach (var statModifier in statModifiers)
         {
+            currMaxHp *= statModifier.maxHpMult;
+            currMoveSpeed *= statModifier.movementSpeedMult;
             currMaxHp = Mathf.Max(0, currMaxHp + statModifier.maxHpAdd);
             currMoveAcc = Mathf.Clamp01(currMoveAcc + statModifier.movementAccuracyAdd);
             currShootAcc = Mathf.Clamp01(currShootAcc + statModifier.shootingAccuracyAdd);
             currMoveSpeed = Mathf.Max(0, currMoveSpeed + statModifier.movementSpeedAdd);
-            currMaxHp *= statModifier.maxHpMult;
-            currMoveSpeed *= statModifier.movementSpeedMult;
         }
         healthScript.UpdateMaxHp(currMaxHp);
         shooterScript.accuracy = currShootAcc;

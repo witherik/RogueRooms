@@ -102,13 +102,13 @@ public class ShooterScript : MonoBehaviour
         currentWeapon = Instantiate(baseWeaponObject);
         foreach (var modifier in weaponModifiers)
         {
+            currentWeapon.damage *= modifier.damageMultiplier;
+            currentWeapon.spread *= modifier.spreadMultiplier;
             currentWeapon.damage += modifier.damage;
             currentWeapon.shotsPerSecond += modifier.shotsPerSecond;
             currentWeapon.bounces += modifier.bounces;
             currentWeapon.projectileCount += modifier.projectileCount;
             currentWeapon.seekingSregnth = Mathf.Clamp01(currentWeapon.seekingSregnth + modifier.seekingSregnth);
-            currentWeapon.damage *= modifier.damageMultiplier;
-            currentWeapon.spread *= modifier.spreadMultiplier;
         }
     }
 

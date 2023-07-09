@@ -18,34 +18,39 @@ public class HeroMovement : MonoBehaviour
     [SerializeField] private int dirCount = 16;
     [SerializeField] private float calculationTime = 0.25f;
     [SerializeField] private LayerMask wallLayer;
-    [SerializeField] private bool needsLOSToChase = true;
+    // [SerializeField] private bool needsLOSToChase = true;
     [Header("Weights")]
     [SerializeField] private float wallDistWeight = -1.0f;
     [SerializeField] private float enemyDistWeight = -1.0f;
-    [SerializeField] private float heroDistWeight = 2.0f;
+    [SerializeField] private float targetingWeight = 1.0f;
+    [SerializeField] private float projectileDodgeWeight = 1.0f;
     [SerializeField] private float previousDirWeight = 0.5f;
     [SerializeField] private float wanderDirWeight = 0.5f;
     [Header("Wall check")]
     [SerializeField] private float minWallDist = 0.5f;
     [SerializeField] private float maxWallDist = 2.0f;
 
-    private float wallDistRange;
+
     private Dictionary<Vector2, float> obstacleDirections = new Dictionary<Vector2, float>();
 
     [Header("Enemy check")]
     [SerializeField] private float minEnemyDist = 0.75f;
     [SerializeField] private float maxEnemyDist = 1.25f;
 
-    private float enemyDistRange;
+
     private Dictionary<Vector2, float> enemyDirections = new Dictionary<Vector2, float>();
 
-    [Header("Hero weight")]
-    [SerializeField] AnimationCurve heroDistanceEval;
-    private (Vector2, float) heroDirection;
-    private Transform heroTransform;
+    [Header("Random Target")]
+    [SerializeField][Range(0.0f, 1.0f)] private float rerollTargetChance = 0.5f;
+    [SerializeField] AnimationCurve targetEvaluation;
+    private (Vector2, float) targetDirection;
+    private Transform targetTransform;
 
-    [Header("Dodge")]
-    [SerializeField] private float dodgeWeight;
+    [Header("Dodging")]
+    [SerializeField] private float minProjectileDist = 0.75f;
+    [SerializeField] private float maxProjectileDist = 1.25f;
+
+    private Dictionary<Vector2, float> projectileDirs = new Dictionary<Vector2, float>();
 
     [Header("Previous direction")]
     private (Vector2, float) previousDirection = (Vector2.zero, 0);
@@ -54,15 +59,14 @@ public class HeroMovement : MonoBehaviour
     [SerializeField] private float angleChange = 30f;
     private Vector2 wanderDir;
 
-    [Header("Random Target")]
-    [SerializeField] private float targetingWeight = 1.0f;
-    [SerializeField][Range(0.0f, 1.0f)] private float rerollTargetChance = 0.5f;
+
 
     private Rigidbody2D rigidBody;
     private GameManager gameManager;
 
     private List<Vector2> directions = new List<Vector2>();
     private List<Enemy> enemies = new List<Enemy>();
+    private List<Projectile> projectiles = new List<Projectile>();
 
 
 
@@ -75,8 +79,9 @@ public class HeroMovement : MonoBehaviour
     {
         gameManager = FindAnyObjectByType<GameManager>();
         enemies = gameManager.GetEnemyList();
+        projectiles = gameManager.GetProjectileList();
         rigidBody = GetComponent<Rigidbody2D>();
-        heroTransform = GameObject.FindWithTag("Player").transform;
+        GetTargetDistanceWeight();
         wanderDir = Random.insideUnitCircle.normalized;
         InitializeDirections();
     }
@@ -99,7 +104,8 @@ public class HeroMovement : MonoBehaviour
             timePassed = 0;
             GetWallDistanceWeights();
             GetEnemyDistanceWeights();
-            GetHeroDistanceWeight();
+            GetTargetDistanceWeight();
+            GetProjectileWeights();
             GetNewWanderDir();
             var dir = CalculateMove();
             rigidBody.velocity = dir * speed;
@@ -120,7 +126,11 @@ public class HeroMovement : MonoBehaviour
             {
                 weight += Vector2.Dot(direction, enemyDirection.Key) * enemyDirection.Value * enemyDistWeight;
             }
-            weight += Vector2.Dot(direction, heroDirection.Item1) * heroDirection.Item2 * heroDistWeight;
+            foreach (var projectileDir in projectileDirs)
+            {
+                weight += Vector2.Dot(direction, projectileDir.Key) * projectileDir.Value * projectileDodgeWeight;
+            }
+            weight += Vector2.Dot(direction, targetDirection.Item1) * targetDirection.Item2 * targetingWeight;
             weight += Vector2.Dot(direction, previousDirection.Item1) * previousDirection.Item2 * previousDirWeight;
             weight += Vector2.Dot(direction, wanderDir) * wanderDirWeight;
             if (debug) { DebugDirection(direction, weight, Color.green, Color.red); }
@@ -156,7 +166,7 @@ public class HeroMovement : MonoBehaviour
         enemyDirections.Clear();
         foreach (var enemy in enemies)
         {
-            if (enemy.gameObject != this.gameObject)
+            if (enemy.transform != targetTransform)
             {
                 var direction = (enemy.transform.position - transform.position).normalized;
                 var distance = Vector2.Distance(enemy.transform.position, transform.position);
@@ -166,20 +176,47 @@ public class HeroMovement : MonoBehaviour
             }
         }
     }
-    private void GetHeroDistanceWeight()
+    private void GetTargetDistanceWeight()
     {
-        if (heroTransform)
+        if (enemies.Count > 0)
         {
-            if (!needsLOSToChase || HelperFunctions.CheckLineOfSight(transform.position, heroTransform.position, wallLayer))
+            var rand = Random.Range(0.0f, 1.0f);
+            if (rand <= rerollTargetChance || targetTransform == null)
             {
-                var direction = (heroTransform.position - transform.position);
-                var normalWeight = Mathf.Clamp(heroDistanceEval.Evaluate(direction.magnitude), -1.0f, 1.0f);
-                heroDirection = (direction.normalized, normalWeight);
-                return;
+                var randTarget = Random.Range(0, enemies.Count);
+                targetTransform = enemies[randTarget].transform;
+            }
+
+            var direction = (targetTransform.position - transform.position).normalized;
+            var distance = Vector2.Distance(targetTransform.position, transform.position);
+            var normalWeight = Mathf.Clamp(targetEvaluation.Evaluate(distance), -1.0f, 1.0f);
+            targetDirection = (direction.normalized, normalWeight);
+            return;
+        }
+        targetTransform = null;
+        targetDirection = (Vector2.zero, 0);
+    }
+    private void GetProjectileWeights()
+    {
+        projectileDirs.Clear();
+        foreach (var projectile in projectiles)
+        {
+            var direction = (projectile.transform.position - transform.position);
+            var angle = Vector2.Angle(projectile.transform.right, direction);
+            var distance = Mathf.Cos(Mathf.Deg2Rad * angle) * direction.magnitude;
+            distance = Mathf.Clamp(distance, minProjectileDist, maxProjectileDist);
+            var normalWeight = 1 - (distance - minProjectileDist) / (maxProjectileDist - minProjectileDist);
+            if (projectileDirs.ContainsKey(direction.normalized))
+            {
+                projectileDirs[direction.normalized] = Mathf.Max(normalWeight, projectileDirs[direction.normalized]);
+            }
+            else
+            {
+                projectileDirs.Add(direction.normalized, normalWeight);
             }
         }
-        heroDirection = (Vector2.zero, 0);
     }
+
     private void DebugDirection(Vector2 direction, float weight, Color positive, Color negative)
     {
         if (weight > 0)
@@ -196,9 +233,10 @@ public class HeroMovement : MonoBehaviour
         var rotAngle = Random.Range(-angleChange, angleChange);
         wanderDir = HelperFunctions.rotate(wanderDir, Mathf.Deg2Rad * rotAngle);
     }
-    public void UpdateStats(float speed, float accuracy)
+    public void UpdateStats(float speed, float accuracy, float dodgeSkill)
     {
         this.speed = speed;
         this.accuracy = accuracy;
+        this.projectileDodgeWeight = dodgeSkill;
     }
 }
