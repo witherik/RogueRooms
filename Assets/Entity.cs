@@ -23,6 +23,9 @@ public class Entity : MonoBehaviour
     [SerializeField] protected List<WeaponModifier> weaponModifiers = new List<WeaponModifier>();
     [SerializeField] protected List<EntityStatModifier> statModifiers = new List<EntityStatModifier>();
 
+    private float updateTime = 1.0f;
+    private float currTime = 0.0f;
+
     protected virtual void Start()
     {
         healthScript = GetComponent<Health>();
@@ -30,6 +33,15 @@ public class Entity : MonoBehaviour
         TryGetComponent<ShooterScript>(out shooterScript);
         if (shooterScript) { shooterScript.SetWeapon(weaponObject); shooterScript.SetModifiers(weaponModifiers); }
         UpdateStatModifiers();
+    }
+    protected virtual void Update()
+    {
+        currTime += Time.deltaTime;
+        if (currTime > updateTime)
+        {
+            currTime = 0;
+            UpdateStatModifiers();
+        }
     }
     public virtual void Death()
     {
@@ -45,13 +57,13 @@ public class Entity : MonoBehaviour
         this.weaponModifiers = weaponModifiers;
         if (shooterScript) { shooterScript.SetModifiers(weaponModifiers); }
     }
-    public void AddSatModifier(EntityStatModifier statModifier)
+    public virtual void AddStatModifier(EntityStatModifier statModifier)
     {
         statModifiers.Add(statModifier);
         UpdateStatModifiers();
     }
 
-    protected void UpdateStatModifiers()
+    protected virtual void UpdateStatModifiers()
     {
         currMaxHp = maxHp;
         currMoveAcc = movementAccuracy;
@@ -60,12 +72,14 @@ public class Entity : MonoBehaviour
 
         foreach (var statModifier in statModifiers)
         {
-            currMaxHp += statModifier.maxHpAdd;
+            currMaxHp = Mathf.Max(0, currMaxHp + statModifier.maxHpAdd);
             currMoveAcc = Mathf.Clamp01(currMoveAcc + statModifier.movementAccuracyAdd);
             currShootAcc = Mathf.Clamp01(currShootAcc + statModifier.shootingAccuracyAdd);
-            currMoveSpeed = Mathf.Min(0, currMoveSpeed + statModifier.movementSpeedAdd);
-            currMaxHp *= statModifier.maxHpMult;
-            currMoveSpeed *= statModifier.movementSpeedMult;
+            currMoveSpeed = Mathf.Max(0, currMoveSpeed + statModifier.movementSpeedAdd);
+            if (statModifier.maxHpMult > 0) { currMaxHp *= statModifier.maxHpMult; }
+            if (statModifier.movementSpeedMult > 0) { currMoveSpeed *= statModifier.movementSpeedMult; }
         }
+        healthScript.UpdateMaxHp(currMaxHp);
+        shooterScript.accuracy = currShootAcc;
     }
 }

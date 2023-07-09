@@ -186,4 +186,9 @@ public class EnemyMovement : MonoBehaviour
         var rotAngle = Random.Range(-angleChange, angleChange);
         wanderDir = HelperFunctions.rotate(wanderDir, Mathf.Deg2Rad * rotAngle);
     }
+    public void UpdateStats(float speed, float accuracy)
+    {
+        this.speed = speed;
+        this.accuracy = accuracy;
+    }
 }

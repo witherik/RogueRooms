@@ -14,7 +14,7 @@ public class ShooterScript : MonoBehaviour
     [SerializeField] private List<string> damageTags = new List<string>() { "Enemy" };
     [SerializeField] private string bulletLayerName = "PlayerBullet";
     [Header("Stats")]
-    [SerializeField][Range(0.0f, 1.0f)] private float accuracy = 1.0f;
+    [SerializeField][Range(0.0f, 1.0f)] public float accuracy = 1.0f;
     [SerializeField] private bool useMovementPredictor = true;
     [Header("Weapon")]
     [SerializeField] private WeaponObject baseWeaponObject;

@@ -116,9 +116,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 100
-  movementAccuracy: 0
-  shootingAccuracy: 0
-  movementSpeed: 0
+  movementAccuracy: 0.9
+  shootingAccuracy: 0.208
+  movementSpeed: 2.5
   weaponObject: {fileID: 11400000, guid: 4913c4d5ba99c414ba9ca86a9ebf5b0b, type: 2}
   weaponModifiers: []
   statModifiers: []

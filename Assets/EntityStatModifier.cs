@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "EntityStatModifier", menuName = "Entity/EntityStatModifier", order = 0)]
 public class EntityStatModifier : ScriptableObject
 {
 
@@ -14,4 +15,7 @@ public class EntityStatModifier : ScriptableObject
     [SerializeField] public float maxHpMult;
     [SerializeField][Min(0)] public float movementSpeedMult;
 
+    [Header("Player specific")]
+    [SerializeField] public float dodgeSkilAdd;
+    [SerializeField] public float dodgeSkilMult;
 }

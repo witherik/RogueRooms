@@ -73,9 +73,7 @@ public class Projectile : MonoBehaviour
     }
     private void Explode()
     {
-        if (heroScript != null)
-        {
-        }
+
         FindObjectOfType<GameManager>().OnProjectileDeath(this);
         Destroy(gameObject);
     }
