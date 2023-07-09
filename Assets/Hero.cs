@@ -17,6 +17,7 @@ public class Hero : Entity
         base.Start();
         TryGetComponent<HeroMovement>(out heroMovement);
         UpdateStatModifiers();
+        gameManager = FindAnyObjectByType<GameManager>();
     }
     protected override void UpdateStatModifiers()
     {
@@ -36,5 +37,10 @@ public class Hero : Entity
     {
         base.AddStatModifier(statModifier);
         UpdateStatModifiers();
+    }
+
+    public override void Death() {
+        gameManager.OnHeroDeath();
+        base.Death();
     }
 }

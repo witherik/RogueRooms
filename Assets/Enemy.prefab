@@ -195,14 +195,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7455de50a7b8d6f42a88123947ebbc27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 100
+  maxHp: 20
   movementAccuracy: 0.9
   shootingAccuracy: 0.208
   movementSpeed: 2.5
   statModifiers: []
   weaponObject: {fileID: 11400000, guid: 4913c4d5ba99c414ba9ca86a9ebf5b0b, type: 2}
-  weaponModifiers:
-  - {fileID: 11400000, guid: 117f4c38d15c3674c8a86c37a971c902, type: 2}
+  weaponModifiers: []
 --- !u!114 &-8997129635624011390
 MonoBehaviour:
   m_ObjectHideFlags: 0

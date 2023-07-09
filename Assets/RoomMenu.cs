@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -11,6 +12,7 @@ public class RoomMenu : MonoBehaviour {
     [SerializeField] private ItemOption[] itemOptions;
     [SerializeField] private Transform itemOptionsParent;
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private TextMeshProUGUI roomCounter;
 
     private List<Tuple<int, ItemOption>> _weightedOptions;
     private int _totalOptionWeight;
@@ -19,7 +21,7 @@ public class RoomMenu : MonoBehaviour {
     private List<Tuple<int, ItemOption>> _currentItemOptions = new();
     private int _baseMonsterLevel = 0;
     private int _currentMonsterLevel = 0;
-        
+
     private void Init() {
         _weightedOptions = new List<Tuple<int, ItemOption>>();
         var runningWeightSum = 0;
@@ -31,7 +33,7 @@ public class RoomMenu : MonoBehaviour {
         _totalOptionWeight = runningWeightSum;
     }
 
-    public void Show(int numberOfItems, int baseMonsterLevel) {
+    public void Show(int numberOfItems, int baseMonsterLevel, int roomCount) {
         if (!_isInitialized) {
             Init();
             _isInitialized = true;
@@ -44,7 +46,9 @@ public class RoomMenu : MonoBehaviour {
         _baseMonsterLevel = baseMonsterLevel;
         _currentMonsterLevel = baseMonsterLevel;
         monsterLevelSlider.value = (float)baseMonsterLevel / 100;
-        
+
+        roomCounter.text = "Rooms defeated: " + roomCount;
+
         var pickedItems = new ItemOption[numberOfItems];
         for (var i = 0; i < numberOfItems; i++) {
             var randomWeightIndex = Random.Range(0, _totalOptionWeight);
@@ -70,13 +74,11 @@ public class RoomMenu : MonoBehaviour {
     }
 
     public void OnSubmit() {
-        Debug.Log("Submitted");
-        gameManager.StartRoom();
+        gameManager.StartRoom(_currentItemOptions, _currentMonsterLevel);
         gameObject.SetActive(false);
     }
 
     public void OnPercentageChanged(int itemIndex, int percentage) {
-        Debug.Log($"Item {itemIndex} now has value {percentage}%");
         var previousValue = _currentItemOptions[itemIndex];
         _currentItemOptions[itemIndex] = new Tuple<int, ItemOption>(percentage, previousValue.Item2);
         RecalculateMonsterLevel();
@@ -100,7 +102,6 @@ public class RoomMenu : MonoBehaviour {
 
         _currentMonsterLevel = Mathf.Clamp((int)resultingLevel, 0, 100);
         monsterLevelSlider.value = (float)_currentMonsterLevel / 100;
-        Debug.Log($"Total monster value {resultingLevel} -> {_currentMonsterLevel}");
     }
 }
 
@@ -109,4 +110,7 @@ public struct ItemOption {
     public Sprite icon;
     public string description;
     public int weight;
+    public WeaponModifier modifier;
+    public WeaponObject weapon;
+    public EntityStatModifier statModifier;
 }
