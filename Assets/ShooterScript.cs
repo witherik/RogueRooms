@@ -129,7 +129,11 @@ public class ShooterScript : MonoBehaviour
             }
             return closestEnemy;
         }
-        return heroTransform;
+        if (heroTransform && HelperFunctions.CheckLineOfSight(transform.position, heroTransform.position, lineOfSightBlocking))
+        {
+            return heroTransform;
+        }
+        return null;
     }
 
     private Vector2 PredictTarget(Transform target)
