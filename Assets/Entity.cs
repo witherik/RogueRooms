@@ -78,7 +78,9 @@ public class Entity : MonoBehaviour
             currShootAcc = Mathf.Clamp01(currShootAcc + statModifier.shootingAccuracyAdd);
             currMoveSpeed = Mathf.Max(0, currMoveSpeed + statModifier.movementSpeedAdd);
         }
+        if (!healthScript) { TryGetComponent<Health>(out healthScript); }
         healthScript.UpdateMaxHp(currMaxHp);
+        if (!shooterScript) { TryGetComponent<ShooterScript>(out shooterScript); }
         shooterScript.accuracy = currShootAcc;
     }
 }

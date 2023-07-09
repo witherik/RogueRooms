@@ -54,7 +54,7 @@ public class ShooterScript : MonoBehaviour
                 offAngle = AccuracyOffset();
             }
         }
-        timeSinceLastShot = Mathf.Min(timeSinceLastShot + Time.deltaTime, 1 / currentWeapon.shotsPerSecond);
+        timeSinceLastShot += Time.deltaTime;
     }
 
     private float AccuracyOffset()
