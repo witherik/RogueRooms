@@ -4547,46 +4547,52 @@ MonoBehaviour:
   monsterLevelSlider: {fileID: 237477494}
   itemOptionPrefab: {fileID: -7471923747571445658, guid: ff54a98080b6df54da9ffe8977cb92f7, type: 3}
   itemOptions:
-  - icon: {fileID: 21300000, guid: 6d8beb4b1a0cda843a9d4dba5d7eddf4, type: 3}
-    description: Spear
+  - icon: {fileID: 21300000, guid: 6ea833e02d985464caae0d1887e4e54f, type: 3}
+    description: Damage +2
     weight: 2
-    modifier: {fileID: 0}
+    modifier: {fileID: 11400000, guid: 2307ee52d8e539040993c525839c2480, type: 2}
     weapon: {fileID: 0}
     statModifier: {fileID: 0}
-  - icon: {fileID: 21300000, guid: ab4d7720e8383394c87ccc4117cba1f4, type: 3}
-    description: Other Spear
+  - icon: {fileID: 21300000, guid: 6ea833e02d985464caae0d1887e4e54f, type: 3}
+    description: Damage x1.1
     weight: 1
-    modifier: {fileID: 0}
+    modifier: {fileID: 11400000, guid: bb3ef1f0d594e3f4684f41815c34931d, type: 2}
     weapon: {fileID: 0}
     statModifier: {fileID: 0}
-  - icon: {fileID: 21300000, guid: d124f739d02828d488373b750a14cbac, type: 3}
-    description: Axe
+  - icon: {fileID: 21300000, guid: 6ea833e02d985464caae0d1887e4e54f, type: 3}
+    description: Projectile Bounce +1
     weight: 3
-    modifier: {fileID: 0}
+    modifier: {fileID: 11400000, guid: c52ef3a16be5ad2488a1f24d2aa28f2f, type: 2}
     weapon: {fileID: 0}
     statModifier: {fileID: 0}
-  - icon: {fileID: 21300000, guid: e87ac0129729a644494d815e1a3f9e4e, type: 3}
-    description: Big Axe
+  - icon: {fileID: 21300000, guid: 6ea833e02d985464caae0d1887e4e54f, type: 3}
+    description: Projectile Count +1
     weight: 2
-    modifier: {fileID: 0}
+    modifier: {fileID: 11400000, guid: 4b6ec5656ea7819438a302f9d9f9cb9c, type: 2}
     weapon: {fileID: 0}
     statModifier: {fileID: 0}
-  - icon: {fileID: 21300000, guid: 6ffea983eff08994f802a2bf2a439cee, type: 3}
-    description: Magic Wand
+  - icon: {fileID: 21300000, guid: 6ea833e02d985464caae0d1887e4e54f, type: 3}
+    description: Projectile Speed +0.25
     weight: 4
-    modifier: {fileID: 0}
+    modifier: {fileID: 11400000, guid: 3f0871506dfea6f4a95b0f52f6551084, type: 2}
     weapon: {fileID: 0}
     statModifier: {fileID: 0}
-  - icon: {fileID: 21300000, guid: 64b5fb3d8bb44894db6d4d88d15ff905, type: 3}
-    description: Sword
+  - icon: {fileID: 21300000, guid: 6ea833e02d985464caae0d1887e4e54f, type: 3}
+    description: Seeking Strength +0.1
     weight: 2
-    modifier: {fileID: 0}
+    modifier: {fileID: 11400000, guid: 22c408ef6ce79b641b4751ecb907b138, type: 2}
     weapon: {fileID: 0}
     statModifier: {fileID: 0}
-  - icon: {fileID: 21300000, guid: d10c93e5b406a8b4f87a107d7b406f3e, type: 3}
-    description: Dagger
+  - icon: {fileID: 21300000, guid: 6ea833e02d985464caae0d1887e4e54f, type: 3}
+    description: Shots Per Second +1
     weight: 2
-    modifier: {fileID: 0}
+    modifier: {fileID: 11400000, guid: aac640e600afefd47ae81a6110b02d59, type: 2}
+    weapon: {fileID: 0}
+    statModifier: {fileID: 0}
+  - icon: {fileID: 21300000, guid: 6ea833e02d985464caae0d1887e4e54f, type: 3}
+    description: Spread x1.1
+    weight: 2
+    modifier: {fileID: 11400000, guid: a18ed415a9c3d4840acc6e442ca71ede, type: 2}
     weapon: {fileID: 0}
     statModifier: {fileID: 0}
   itemOptionsParent: {fileID: 1038778574}
