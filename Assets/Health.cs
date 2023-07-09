@@ -8,6 +8,24 @@ public class Health : MonoBehaviour
     private float hp;
     private Hero hero = null;
     private Enemy enemy = null;
+    private Healthbar healthbar;
+
+    private void Start()
+    {
+        hp = maxHp;
+        TryGetComponent<Hero>(out hero);
+        TryGetComponent<Enemy>(out enemy);
+        TryGetComponent<Healthbar>(out healthbar);
+        healthbar = GetComponentInChildren<Healthbar>();
+
+    }
+    void Update()
+    {
+        if (healthbar)
+        {
+            healthbar.DisplayHealth(maxHp, hp);
+        }
+    }
 
     public void SetMaxHP(float maxHp)
     {
@@ -20,12 +38,6 @@ public class Health : MonoBehaviour
         this.maxHp = maxHp;
         this.hp *= ratio;
     }
-    private void Start()
-    {
-        hp = maxHp;
-        TryGetComponent<Hero>(out hero);
-        TryGetComponent<Enemy>(out enemy);
-    }
 
     public void Damage(float value)
     {
@@ -36,8 +48,14 @@ public class Health : MonoBehaviour
             if (enemy) { enemy.Death(); }
         }
     }
-    public void Heal(float value)
+
+    public void MultiplicativeHeal(float value)
     {
-        hp += value;
+        hp = Mathf.Min(maxHp, maxHp * value + hp);
+
+    }
+    public void AddiveHeal(float value)
+    {
+        hp = Mathf.Min(maxHp, hp + value);
     }
 }

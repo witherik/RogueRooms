@@ -119,10 +119,10 @@ MonoBehaviour:
   movementAccuracy: 0.9
   shootingAccuracy: 0.208
   movementSpeed: 2.5
+  statModifiers: []
   weaponObject: {fileID: 11400000, guid: 4913c4d5ba99c414ba9ca86a9ebf5b0b, type: 2}
   weaponModifiers:
   - {fileID: 11400000, guid: 117f4c38d15c3674c8a86c37a971c902, type: 2}
-  statModifiers: []
 --- !u!114 &-8997129635624011390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +143,7 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 128
-  needsLOSToChase: 0
+  needsLOSToChase: 1
   wallDistWeight: -0.5
   enemyDistWeight: -0.75
   heroDistWeight: 1
