@@ -3747,23 +3747,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f734d4f7622c884a8bdb6eb493eaca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  calculationTime: 0.25
-  dirCount: 32
+  debug: 0
+  speed: 5
   accuracy: 0.7
-  rayToWallDistance: 100
+  dirCount: 32
+  calculationTime: 0.25
   wallLayer:
     serializedVersion: 2
     m_Bits: 128
-  wallDistanceWeight: 1
-  movementBlockLayerMask:
+  needsLOSToChase: 1
+  wallDistWeight: -1
+  enemyDistWeight: -1
+  heroDistWeight: 2
+  previousDirWeight: 0.5
+  wanderDirWeight: 0.5
+  minWallDist: 0.5
+  maxWallDist: 2
+  minEnemyDist: 0.75
+  maxEnemyDist: 1.25
+  heroDistanceEval:
     serializedVersion: 2
-    m_Bits: 385
-  totalPosWeight: 1.77
-  enemyCountWeightMult: 10
-  enemyAvoidWeight: 1
-  projectileAvoidWeight: 10
-  impossibleMoveWeight: -1000
-  speed: 5
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  dodgeWeight: 0
+  angleChange: 30
+  targetingWeight: 1
+  rerollTargetChance: 0.5
 --- !u!114 &707442023
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,12 +17,10 @@ public class Entity : MonoBehaviour
     protected float currShootAcc;
     [SerializeField][Min(0)] protected float movementSpeed;
     protected float currMoveSpeed;
+    [SerializeField] protected List<EntityStatModifier> statModifiers = new List<EntityStatModifier>();
     [Header("Weapon")]
     [SerializeField] protected WeaponObject weaponObject;
-    [Header("Modifiers")]
     [SerializeField] protected List<WeaponModifier> weaponModifiers = new List<WeaponModifier>();
-    [SerializeField] protected List<EntityStatModifier> statModifiers = new List<EntityStatModifier>();
-
     private float updateTime = 1.0f;
     private float currTime = 0.0f;
 
@@ -53,9 +51,9 @@ public class Entity : MonoBehaviour
         this.weaponObject = weaponObject;
         if (shooterScript) { shooterScript.SetWeapon(weaponObject); }
     }
-    public void AddWeaponMod(List<WeaponModifier> weaponModifiers)
+    public void AddWeaponMod(WeaponModifier weaponModifier)
     {
-        this.weaponModifiers = weaponModifiers;
+        weaponModifiers.Add(weaponModifier);
         if (shooterScript) { shooterScript.SetModifiers(weaponModifiers); }
     }
     public virtual void AddStatModifier(EntityStatModifier statModifier)
