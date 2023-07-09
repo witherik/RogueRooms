@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa46bc316a0246146922450f50c900d1, type: 3}
-  m_Name: Bow
+  m_Name: Staff
   m_EditorClassIdentifier: 
   damage: 10
-  shotsPerSecond: 3
-  projectileSpeed: 8
+  shotsPerSecond: 1
+  projectileSpeed: 6
   projectileCount: 1
   bounces: 0
-  spread: 10
+  spread: 30
   seekingSregnth: 0
-  weaponSprite: {fileID: 21300000, guid: 6ea833e02d985464caae0d1887e4e54f, type: 3}
+  weaponSprite: {fileID: 21300000, guid: a935c18743b760c448b29488797a4ef4, type: 3}
   projectilePrefab: {fileID: 513918777282832008, guid: ced5800b7ecace442981419ef7a0473a, type: 3}

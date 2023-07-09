@@ -203,7 +203,7 @@ public class HeroMovement : MonoBehaviour
         {
             var direction = (projectile.transform.position - transform.position);
             var angle = Vector2.Angle(projectile.transform.right, direction);
-            var distance = Mathf.Cos(Mathf.Deg2Rad * angle) * direction.magnitude;
+            var distance = Mathf.Sin(Mathf.Deg2Rad * angle) * direction.magnitude;
             distance = Mathf.Clamp(distance, minProjectileDist, maxProjectileDist);
             var normalWeight = 1 - (distance - minProjectileDist) / (maxProjectileDist - minProjectileDist);
             if (projectileDirs.ContainsKey(direction.normalized))
