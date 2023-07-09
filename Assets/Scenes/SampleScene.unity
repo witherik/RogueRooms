@@ -2928,10 +2928,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
+  m_fontSize: 72
   m_fontSizeBase: 30
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -2964,7 +2964,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -81.488525, y: 0, z: -87.58124, w: -57.87976}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4547,54 +4547,90 @@ MonoBehaviour:
   monsterLevelSlider: {fileID: 237477494}
   itemOptionPrefab: {fileID: -7471923747571445658, guid: ff54a98080b6df54da9ffe8977cb92f7, type: 3}
   itemOptions:
-  - icon: {fileID: 21300000, guid: 6ea833e02d985464caae0d1887e4e54f, type: 3}
+  - icon: {fileID: 21300000, guid: 389c1f5bbf9607f4380b346d9bbaa9ec, type: 3}
     description: Damage +2
     weight: 2
     modifier: {fileID: 11400000, guid: 2307ee52d8e539040993c525839c2480, type: 2}
     weapon: {fileID: 0}
     statModifier: {fileID: 0}
-  - icon: {fileID: 21300000, guid: 6ea833e02d985464caae0d1887e4e54f, type: 3}
+  - icon: {fileID: 21300000, guid: 389c1f5bbf9607f4380b346d9bbaa9ec, type: 3}
     description: Damage x1.1
     weight: 1
     modifier: {fileID: 11400000, guid: bb3ef1f0d594e3f4684f41815c34931d, type: 2}
     weapon: {fileID: 0}
     statModifier: {fileID: 0}
-  - icon: {fileID: 21300000, guid: 6ea833e02d985464caae0d1887e4e54f, type: 3}
+  - icon: {fileID: 21300000, guid: 389c1f5bbf9607f4380b346d9bbaa9ec, type: 3}
     description: Projectile Bounce +1
     weight: 3
     modifier: {fileID: 11400000, guid: c52ef3a16be5ad2488a1f24d2aa28f2f, type: 2}
     weapon: {fileID: 0}
     statModifier: {fileID: 0}
-  - icon: {fileID: 21300000, guid: 6ea833e02d985464caae0d1887e4e54f, type: 3}
+  - icon: {fileID: 21300000, guid: 389c1f5bbf9607f4380b346d9bbaa9ec, type: 3}
     description: Projectile Count +1
     weight: 2
     modifier: {fileID: 11400000, guid: 4b6ec5656ea7819438a302f9d9f9cb9c, type: 2}
     weapon: {fileID: 0}
     statModifier: {fileID: 0}
-  - icon: {fileID: 21300000, guid: 6ea833e02d985464caae0d1887e4e54f, type: 3}
+  - icon: {fileID: 21300000, guid: 389c1f5bbf9607f4380b346d9bbaa9ec, type: 3}
     description: Projectile Speed +0.25
     weight: 4
     modifier: {fileID: 11400000, guid: 3f0871506dfea6f4a95b0f52f6551084, type: 2}
     weapon: {fileID: 0}
     statModifier: {fileID: 0}
-  - icon: {fileID: 21300000, guid: 6ea833e02d985464caae0d1887e4e54f, type: 3}
+  - icon: {fileID: 21300000, guid: 389c1f5bbf9607f4380b346d9bbaa9ec, type: 3}
     description: Seeking Strength +0.1
     weight: 2
     modifier: {fileID: 11400000, guid: 22c408ef6ce79b641b4751ecb907b138, type: 2}
     weapon: {fileID: 0}
     statModifier: {fileID: 0}
-  - icon: {fileID: 21300000, guid: 6ea833e02d985464caae0d1887e4e54f, type: 3}
+  - icon: {fileID: 21300000, guid: 389c1f5bbf9607f4380b346d9bbaa9ec, type: 3}
     description: Shots Per Second +1
     weight: 2
     modifier: {fileID: 11400000, guid: aac640e600afefd47ae81a6110b02d59, type: 2}
     weapon: {fileID: 0}
     statModifier: {fileID: 0}
-  - icon: {fileID: 21300000, guid: 6ea833e02d985464caae0d1887e4e54f, type: 3}
+  - icon: {fileID: 21300000, guid: 389c1f5bbf9607f4380b346d9bbaa9ec, type: 3}
     description: Spread x1.1
     weight: 2
     modifier: {fileID: 11400000, guid: a18ed415a9c3d4840acc6e442ca71ede, type: 2}
     weapon: {fileID: 0}
     statModifier: {fileID: 0}
+  - icon: {fileID: 21300000, guid: e047c97d691cf154cafa199b63dd07cb, type: 3}
+    description: HP +5
+    weight: 2
+    modifier: {fileID: 0}
+    weapon: {fileID: 0}
+    statModifier: {fileID: 11400000, guid: e8980fa44664ac1479ea20206c9ffc5f, type: 2}
+  - icon: {fileID: 21300000, guid: e047c97d691cf154cafa199b63dd07cb, type: 3}
+    description: Movement Accuracy +0.05
+    weight: 2
+    modifier: {fileID: 0}
+    weapon: {fileID: 0}
+    statModifier: {fileID: 11400000, guid: 1679fa7a1f8aef246ad8c87baea9d344, type: 2}
+  - icon: {fileID: 21300000, guid: e047c97d691cf154cafa199b63dd07cb, type: 3}
+    description: HP x1.1
+    weight: 2
+    modifier: {fileID: 0}
+    weapon: {fileID: 0}
+    statModifier: {fileID: 11400000, guid: e33173814e834be4db78e1f2320c97ef, type: 2}
+  - icon: {fileID: 21300000, guid: e047c97d691cf154cafa199b63dd07cb, type: 3}
+    description: Movement Speed +0.5
+    weight: 2
+    modifier: {fileID: 0}
+    weapon: {fileID: 0}
+    statModifier: {fileID: 11400000, guid: 72f5b95178407e44fbeec6918ee8ef73, type: 2}
+  - icon: {fileID: 21300000, guid: e047c97d691cf154cafa199b63dd07cb, type: 3}
+    description: Movement Speed x1.1
+    weight: 2
+    modifier: {fileID: 0}
+    weapon: {fileID: 0}
+    statModifier: {fileID: 11400000, guid: 650193a5dc415914a89f459324c9c04e, type: 2}
+  - icon: {fileID: 21300000, guid: e047c97d691cf154cafa199b63dd07cb, type: 3}
+    description: Movement Speed +0.05
+    weight: 2
+    modifier: {fileID: 0}
+    weapon: {fileID: 0}
+    statModifier: {fileID: 11400000, guid: 135a7a2fda6d73449b299b183d9ab222, type: 2}
   itemOptionsParent: {fileID: 1038778574}
   gameManager: {fileID: 633699125}
   roomCounter: {fileID: 1819413171}
@@ -10072,6 +10108,8 @@ MonoBehaviour:
   icon: {fileID: 638908936}
   text: {fileID: 122573401}
   gameManager: {fileID: 633699125}
+  happyIcon: {fileID: 21300000, guid: 2707bb020f75a774dbde25566bfb6262, type: 3}
+  sadIcon: {fileID: 21300000, guid: 80cbff073cec34149a3bfd900e492d55, type: 3}
 --- !u!114 &1852747925
 MonoBehaviour:
   m_ObjectHideFlags: 0
