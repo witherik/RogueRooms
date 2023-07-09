@@ -4602,18 +4602,12 @@ MonoBehaviour:
     modifier: {fileID: 11400000, guid: aac640e600afefd47ae81a6110b02d59, type: 2}
     weapon: {fileID: 0}
     statModifier: {fileID: 0}
-  - icon: {fileID: 21300000, guid: 6ea833e02d985464caae0d1887e4e54f, type: 3}
-    description: Spread x1.1
+  - icon: {fileID: -518729907, guid: 34be7edc086ed1a46a3dee6255551161, type: 3}
+    description: MaxHealth + 25
     weight: 2
     modifier: {fileID: 11400000, guid: a18ed415a9c3d4840acc6e442ca71ede, type: 2}
     weapon: {fileID: 0}
-    statModifier: {fileID: 0}
-  - icon: {fileID: 21300000, guid: 6ea833e02d985464caae0d1887e4e54f, type: 3}
-    description: Spread x1.1
-    weight: 2
-    modifier: {fileID: 11400000, guid: a18ed415a9c3d4840acc6e442ca71ede, type: 2}
-    weapon: {fileID: 0}
-    statModifier: {fileID: 0}
+    statModifier: {fileID: 11400000, guid: 231b0599eca67c04abbbeada06bdf8bc, type: 2}
   itemOptionsParent: {fileID: 1038778574}
   gameManager: {fileID: 633699125}
   roomCounter: {fileID: 1819413171}

@@ -17,6 +17,6 @@ MonoBehaviour:
   shootingAccuracyAdd: 0
   movementSpeedAdd: 1
   maxHpMult: 1
-  movementSpeedMult: 0.25
+  movementSpeedMult: 1.25
   dodgeSkilAdd: 0
   dodgeSkilMult: 1

@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7455de50a7b8d6f42a88123947ebbc27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 50
+  maxHp: 75
   movementAccuracy: 0.9
   shootingAccuracy: 0.791
   movementSpeed: 2.5
