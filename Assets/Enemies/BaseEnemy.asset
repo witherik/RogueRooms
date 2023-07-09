@@ -15,26 +15,11 @@ MonoBehaviour:
   prefab: {fileID: 4427650959495695171, guid: db538a18ba6953840bfbe1ae6931d044, type: 3}
   levels:
   - fromPower: 0
-    accuracy: 0.4
-    range: 3
-    moveSpeed: 2
-    attackSpeed: 1
-    health: 10
-    attackPower: 1
-    modifiers: 
+    entityModifier: {fileID: 0}
+    weaponModifier: {fileID: 0}
   - fromPower: 5
-    accuracy: 0.6
-    range: 3.5
-    moveSpeed: 2
-    attackSpeed: 1
-    health: 12
-    attackPower: 1
-    modifiers: 
+    entityModifier: {fileID: 0}
+    weaponModifier: {fileID: 0}
   - fromPower: 10
-    accuracy: 0.7
-    range: 4
-    moveSpeed: 3
-    attackSpeed: 1.5
-    health: 14
-    attackPower: 1.5
-    modifiers: 
+    entityModifier: {fileID: 0}
+    weaponModifier: {fileID: 0}
