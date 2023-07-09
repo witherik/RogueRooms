@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75915fe314022e6498de25cea37d267b, type: 3}
   m_Name: SpeedBuff
   m_EditorClassIdentifier: 
-  maxHpAdd: 20
-  movementAccuracyAdd: -0.5
-  shootingAccuracyAdd: 0.1
-  movementSpeedAdd: -1
-  maxHpMult: 2
-  movementSpeedMult: 2
+  maxHpAdd: 0
+  movementAccuracyAdd: 0
+  shootingAccuracyAdd: 0
+  movementSpeedAdd: 0
+  maxHpMult: 1.5
+  movementSpeedMult: 1.5
   dodgeSkilAdd: 0
-  dodgeSkilMult: 0
+  dodgeSkilMult: 1

@@ -120,7 +120,8 @@ MonoBehaviour:
   shootingAccuracy: 0.208
   movementSpeed: 2.5
   weaponObject: {fileID: 11400000, guid: 4913c4d5ba99c414ba9ca86a9ebf5b0b, type: 2}
-  weaponModifiers: []
+  weaponModifiers:
+  - {fileID: 11400000, guid: 117f4c38d15c3674c8a86c37a971c902, type: 2}
   statModifiers: []
 --- !u!114 &-8997129635624011390
 MonoBehaviour:

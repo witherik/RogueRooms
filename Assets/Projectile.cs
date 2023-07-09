@@ -26,7 +26,6 @@ public class Projectile : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         rigidBody.velocity = transform.right * speed;
-        Destroy(gameObject, 3);
     }
 
     private void Update()

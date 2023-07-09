@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: Bounce
   m_EditorClassIdentifier: 
   damage: 0
-  rateOfFire: 0
-  bounces: 3
-  seekingSregth: 0
+  shotsPerSecond: 0
+  projectileSpeed: 0
+  projectileCount: 3
+  bounces: 1
+  spread: 30
+  seekingSregnth: 0
+  damageMultiplier: 1
+  spreadMultiplier: 1

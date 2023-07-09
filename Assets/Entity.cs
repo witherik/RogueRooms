@@ -41,6 +41,7 @@ public class Entity : MonoBehaviour
         {
             currTime = 0;
             UpdateStatModifiers();
+            if (shooterScript) { shooterScript.SetModifiers(weaponModifiers); }
         }
     }
     public virtual void Death()
@@ -76,8 +77,8 @@ public class Entity : MonoBehaviour
             currMoveAcc = Mathf.Clamp01(currMoveAcc + statModifier.movementAccuracyAdd);
             currShootAcc = Mathf.Clamp01(currShootAcc + statModifier.shootingAccuracyAdd);
             currMoveSpeed = Mathf.Max(0, currMoveSpeed + statModifier.movementSpeedAdd);
-            if (statModifier.maxHpMult > 0) { currMaxHp *= statModifier.maxHpMult; }
-            if (statModifier.movementSpeedMult > 0) { currMoveSpeed *= statModifier.movementSpeedMult; }
+            currMaxHp *= statModifier.maxHpMult;
+            currMoveSpeed *= statModifier.movementSpeedMult;
         }
         healthScript.UpdateMaxHp(currMaxHp);
         shooterScript.accuracy = currShootAcc;

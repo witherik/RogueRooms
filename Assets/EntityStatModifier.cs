@@ -12,10 +12,10 @@ public class EntityStatModifier : ScriptableObject
     [SerializeField][Range(0, 1)] public float shootingAccuracyAdd;
     [SerializeField][Min(0)] public float movementSpeedAdd;
     [Header("Multiplicative")]
-    [SerializeField] public float maxHpMult;
-    [SerializeField][Min(0)] public float movementSpeedMult;
+    [SerializeField] public float maxHpMult = 1.0f;
+    [SerializeField][Min(0)] public float movementSpeedMult = 1.0f;
 
     [Header("Player specific")]
     [SerializeField] public float dodgeSkilAdd;
-    [SerializeField] public float dodgeSkilMult;
+    [SerializeField] public float dodgeSkilMult = 1.0f;
 }
